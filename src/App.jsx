@@ -109,9 +109,15 @@ function App() {
             <div>I am a passionate</div>
             <span ref={typedElement} className="element"></span>
             <div className="buttons">
-              <button className="btn">Download Resume</button>
-              <button className="btn" onClick={() => window.open('https://github.com/DeepSaha25', '_blank')}>Visit Github</button>
-            </div>
+  {/* Link to the resume in the public folder */}
+  <a href="/resume.pdf" download="Deep_Saha_Resume.pdf" style={{ textDecoration: 'none' }}>
+    <button className="btn">Download Resume</button>
+  </a>
+  
+  <button className="btn" onClick={() => window.open('https://github.com/DeepSaha25', '_blank')}>
+    Visit Github
+  </button>
+</div>
           </div>
           <div className="rightSection">
             <img src="/img/pro.png" alt="Profile" />
