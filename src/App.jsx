@@ -167,7 +167,7 @@ function App() {
           <h1>A bit about me</h1>
           <h3>Georgian || Aspiring SDE || Web Development Enthusiast || CodeSprint 2.0 qualified || OSCI’25 || Hacktoberfest SuperContributor</h3>
           <p>
-            B.Tech CSE student at JIS University, passionate about coding, tech, and problem-solving. I would enjoy building projects, learning new tools, and applying skills to real-world challenges. Always open to opportunities to learn, grow, and collaborate.
+            B.Tech CSE student at at Narula Institute Of Technology, passionate about coding, tech, and problem-solving. I would enjoy building projects, learning new tools, and applying skills to real-world challenges. Always open to opportunities to learn, grow, and collaborate.
           </p>
         </section>
         
