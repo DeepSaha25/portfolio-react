@@ -2,7 +2,60 @@
   "hash": "385dbbba",
   "configHash": "52b8bd5c",
   "lockfileHash": "cab6902b",
-  "browserHash": "65a4aba3",
-  "optimized": {},
-  "chunks": {}
+  "browserHash": "dd8099a0",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "9e2631bc",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "19acf608",
+      "needsInterop": true
+    },
+    "typed.js": {
+      "src": "../../node_modules/typed.js/dist/typed.module.js",
+      "file": "typed__js.js",
+      "fileHash": "16b0a1bb",
+      "needsInterop": false
+    },
+    "gsap": {
+      "src": "../../node_modules/gsap/index.js",
+      "file": "gsap.js",
+      "fileHash": "0e5c7912",
+      "needsInterop": false
+    },
+    "gsap/ScrollTrigger": {
+      "src": "../../node_modules/gsap/ScrollTrigger.js",
+      "file": "gsap_ScrollTrigger.js",
+      "fileHash": "af54b830",
+      "needsInterop": false
+    },
+    "@tsparticles/react": {
+      "src": "../../node_modules/@tsparticles/react/dist/index.js",
+      "file": "@tsparticles_react.js",
+      "fileHash": "2f64d8e7",
+      "needsInterop": false
+    },
+    "@tsparticles/slim": {
+      "src": "../../node_modules/@tsparticles/slim/browser/index.js",
+      "file": "@tsparticles_slim.js",
+      "fileHash": "4beb742b",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-XQV2XCQM": {
+      "file": "chunk-XQV2XCQM.js"
+    },
+    "chunk-PEXG4VAT": {
+      "file": "chunk-PEXG4VAT.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
+    }
+  }
 }
