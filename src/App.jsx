@@ -13,7 +13,7 @@ function App() {
   const typedElement = useRef(null);
   const [init, setInit] = useState(false);
 
-  // 1. Initialize Particles
+  // 1. Initialize Particles (Cyber/Space Effect)
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
@@ -26,9 +26,12 @@ function App() {
   useEffect(() => {
     const typed = new Typed(typedElement.current, {
       strings: ["Web Developer", "Student", "Speaker", "Tech Enthusiast"],
-      typeSpeed: 100,
-      backSpeed: 50,
-      loop: true
+      typeSpeed: 60,
+      backSpeed: 40,
+      backDelay: 1500,
+      loop: true,
+      showCursor: true,
+      cursorChar: '_'
     });
 
     return () => {
@@ -36,14 +39,45 @@ function App() {
     };
   }, []);
 
-  // 3. Initialize GSAP ScrollTrigger for Navbar Links
+  // 3. GSAP Animations
   useEffect(() => {
-    const sections = ["about", "experience", "projects", "services", "contact"];
+    // Fade in sections on scroll
+    gsap.utils.toArray("section").forEach((section) => {
+      gsap.fromTo(section, 
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
 
+    // Staggered Cards for Experience
+    gsap.fromTo(".experience-card", 
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: ".experience-container",
+          start: "top 85%"
+        }
+      }
+    );
+    
+    // Navbar Active Links
+    const sections = ["about", "experience", "projects", "services", "contact"];
     sections.forEach(id => {
       const section = document.getElementById(id);
       const link = document.querySelector(`nav ul li a[href="#${id}"]`);
-      
       if (section && link) {
         ScrollTrigger.create({
           trigger: section,
@@ -59,25 +93,25 @@ function App() {
   }, []);
 
   const particlesOptions = {
-    fpsLimit: 60,
+    fpsLimit: 120,
     interactivity: {
-      events: { onHover: { enable: true, mode: "repulse" }, resize: true },
-      modes: { repulse: { distance: 100, duration: 0.4 } },
+      events: { onHover: { enable: true, mode: "bubble" }, resize: true },
+      modes: { bubble: { distance: 200, size: 6, duration: 2, opacity: 0.8 } },
     },
     particles: {
-      color: { value: "#ffffff" },
-      links: { color: "#ffffff", distance: 150, enable: true, opacity: 0.3, width: 1 },
-      move: { enable: true, speed: 1 },
-      number: { value: 80, density: { enable: true, area: 800 } },
-      opacity: { value: 0.1 },
-      size: { value: { min: 1, max: 5 } },
+      color: { value: ["#d946ef", "#06b6d4"] }, // Neon Purple & Cyan
+      links: { color: "#ffffff", distance: 150, enable: true, opacity: 0.1, width: 1 },
+      move: { enable: true, speed: 1, direction: "none", random: true, outModes: "out" },
+      number: { value: 60, density: { enable: true, area: 800 } },
+      opacity: { value: 0.5 },
+      shape: { type: "circle" },
+      size: { value: { min: 1, max: 3 } },
     },
     detectRetina: true,
   };
 
   return (
     <div className="app-container">
-      {/* Background Particles */}
       {init && (
         <Particles
           id="tsparticles"
@@ -91,7 +125,7 @@ function App() {
           <div className="left">Deep's Portfolio</div>
           <div className="right">
             <ul>
-              <li><a href="#about">About me</a></li>
+              <li><a href="#about">About</a></li>
               <li><a href="#experience">Experience</a></li>
               <li><a href="#projects">Projects</a></li>
               <li><a href="#services">Services</a></li>
@@ -105,19 +139,18 @@ function App() {
         {/* Hero Section */}
         <section className="firstSection">
           <div className="leftSection">
-            Hi, My name is <span className="purple">Deep Saha</span>
-            <div>I am a passionate</div>
-            <span ref={typedElement} className="element"></span>
+            <span className="text-grey">Welcome to my world</span>
+            <h1>Hi, I'm <span className="purple">Deep Saha</span></h1>
+            <div className="element">I am a <span ref={typedElement}></span></div>
+            
             <div className="buttons">
-  {/* Link to the resume in the public folder */}
-  <a href="/resume.pdf" download="Deep_Saha_Resume.pdf" style={{ textDecoration: 'none' }}>
-    <button className="btn">Download Resume</button>
-  </a>
-  
-  <button className="btn" onClick={() => window.open('https://github.com/DeepSaha25', '_blank')}>
-    Visit Github
-  </button>
-</div>
+              <a href="/resume.pdf" download="Deep_Saha_Resume.pdf" className="btn">
+                Download Resume
+              </a>
+              <a href="https://github.com/DeepSaha25" target="_blank" rel="noreferrer" className="btn">
+                Visit Github
+              </a>
+            </div>
           </div>
           <div className="rightSection">
             <img src="/img/pro.png" alt="Profile" />
@@ -128,11 +161,11 @@ function App() {
 
         {/* About Section */}
         <section className="aboutSection" id="about">
-          <span className="text-grey">Hi, I'm Deep Saha</span>
+          <span className="text-grey">Introduction</span>
           <h1>A bit about me</h1>
           <h3>Georgian || Aspiring SDE || Web Development Enthusiast || CodeSprint 2.0 qualified || OSCI’25 || Hacktoberfest SuperContributor</h3>
           <p>
-            B.Tech CSE student at JIS University, passionate about coding, tech, and problem-solving. I would enjoy building projects, learning new tools, and applying skills to real-world challenges. Always open to opportunities to learn, grow, and collaborate
+            B.Tech CSE student at JIS University, passionate about coding, tech, and problem-solving. I would enjoy building projects, learning new tools, and applying skills to real-world challenges. Always open to opportunities to learn, grow, and collaborate.
           </p>
         </section>
         
@@ -140,7 +173,7 @@ function App() {
 
         {/* Experience Section */}
         <section className="secondSection" id="experience">
-          <span className="text-grey">What I have done so far</span>
+          <span className="text-grey">My Journey</span>
           <h1>Experience</h1>
           
           <div className="experience-container">
@@ -161,8 +194,8 @@ function App() {
 
         {/* Projects Section */}
         <section className="projectSection" id="projects">
-          <span className="text-grey">Have a look at some of my projects....</span>
-          <h1>(Force.displacement)</h1>
+          <span className="text-grey">My Work</span>
+          <h1>Projects</h1>
           <div className="boxholder">
             {projectData.map((project) => (
               <a key={project.id} href={project.link} target="_blank" rel="noreferrer" className="box-link">
@@ -178,8 +211,8 @@ function App() {
 
         {/* Services Section */}
         <section className="serviceSection" id="services">
-          <span className="text-grey">What I can help you with?</span>
-          <h1>Services I Offer</h1>
+          <span className="text-grey">What I Offer</span>
+          <h1>Services</h1>
           <ul>
             <li>Frontend Development</li>
             <li>Landing Page Design & Develop</li>
@@ -191,13 +224,13 @@ function App() {
 
         {/* Contact Section */}
         <section className="contactSection" id="contact">
-          <span className="text-grey">Wanna a have talk to me??</span>
-          <h1>Contact Details</h1>
+          <span className="text-grey">Get in Touch</span>
+          <h1>Contact Me</h1>
           <ul>
-            <li>Mobile no - 8617764637</li>
-            <li>Email - ideepsaha25@gmail.com</li>
-            <li><a href="https://www.linkedin.com/in/deep-saha-13a4bb365/">LinkedIn</a></li>
-            <li><a href="https://github.com/DeepSaha25">Github</a></li>
+            <li>Mobile: 8617764637</li>
+            <li>Email: ideepsaha25@gmail.com</li>
+            <li><a href="https://www.linkedin.com/in/deep-saha-13a4bb365/" target="_blank" rel="noreferrer">LinkedIn Profile</a></li>
+            <li><a href="https://github.com/DeepSaha25" target="_blank" rel="noreferrer">Github Profile</a></li>
           </ul>
         </section>
 
@@ -207,7 +240,7 @@ function App() {
       <footer>
         <div className="footer">
           <div className="footer-first">
-            <h4>Made with ♥ || Deep Saha || Copyright © Deep Saha </h4>
+            <h4>Made with ♥ by Deep Saha || © 2025 Deep Saha </h4>
           </div>
         </div>
       </footer>
