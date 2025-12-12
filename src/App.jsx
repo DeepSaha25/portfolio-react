@@ -144,7 +144,8 @@ function App() {
             <div className="element">I am a <span ref={typedElement}></span></div>
             
             <div className="buttons">
-              <a href="/resume.pdf" download="Deep_Saha_Resume.pdf" className="btn">
+              {/* FIXED: Removed leading slash */}
+              <a href="resume.pdf" download="Deep_Saha_Resume.pdf" className="btn">
                 Download Resume
               </a>
               <a href="https://github.com/DeepSaha25" target="_blank" rel="noreferrer" className="btn">
@@ -153,7 +154,8 @@ function App() {
             </div>
           </div>
           <div className="rightSection">
-            <img src="/img/pro.png" alt="Profile" />
+            {/* FIXED: Removed leading slash */}
+            <img src="img/pro.png" alt="Profile" />
           </div>
         </section>
         
